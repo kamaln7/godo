@@ -53,11 +53,6 @@ type AppLogs struct {
 	HistoricURLs []string `json:"historic_urls"`
 }
 
-// AppCreateRequest represents a request to create an app.
-type AppCreateRequest struct {
-	Spec *AppSpec `json:"spec"`
-}
-
 // AppUpdateRequest represents a request to update an app.
 type AppUpdateRequest struct {
 	Spec *AppSpec `json:"spec"`

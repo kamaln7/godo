@@ -9,21 +9,22 @@ import (
 
 // App An application's configuration and status.
 type App struct {
-	ID                      string       `json:"id,omitempty"`
-	OwnerUUID               string       `json:"owner_uuid,omitempty"`
-	Spec                    *AppSpec     `json:"spec"`
-	DefaultIngress          string       `json:"default_ingress,omitempty"`
-	CreatedAt               time.Time    `json:"created_at,omitempty"`
-	UpdatedAt               time.Time    `json:"updated_at,omitempty"`
-	ActiveDeployment        *Deployment  `json:"active_deployment,omitempty"`
-	InProgressDeployment    *Deployment  `json:"in_progress_deployment,omitempty"`
-	LastDeploymentCreatedAt time.Time    `json:"last_deployment_created_at,omitempty"`
-	LiveURL                 string       `json:"live_url,omitempty"`
-	Region                  *AppRegion   `json:"region,omitempty"`
-	TierSlug                string       `json:"tier_slug,omitempty"`
-	LiveURLBase             string       `json:"live_url_base,omitempty"`
-	LiveDomain              string       `json:"live_domain,omitempty"`
-	Domains                 []*AppDomain `json:"domains,omitempty"`
+	ID                      string             `json:"id,omitempty"`
+	OwnerUUID               string             `json:"owner_uuid,omitempty"`
+	Spec                    *AppSpec           `json:"spec"`
+	DeployTemplate          *AppDeployTemplate `json:"deploy_template,omitempty"`
+	DefaultIngress          string             `json:"default_ingress,omitempty"`
+	CreatedAt               time.Time          `json:"created_at,omitempty"`
+	UpdatedAt               time.Time          `json:"updated_at,omitempty"`
+	ActiveDeployment        *Deployment        `json:"active_deployment,omitempty"`
+	InProgressDeployment    *Deployment        `json:"in_progress_deployment,omitempty"`
+	LastDeploymentCreatedAt time.Time          `json:"last_deployment_created_at,omitempty"`
+	LiveURL                 string             `json:"live_url,omitempty"`
+	Region                  *AppRegion         `json:"region,omitempty"`
+	TierSlug                string             `json:"tier_slug,omitempty"`
+	LiveURLBase             string             `json:"live_url_base,omitempty"`
+	LiveDomain              string             `json:"live_domain,omitempty"`
+	Domains                 []*AppDomain       `json:"domains,omitempty"`
 }
 
 // AppDatabaseSpec struct for AppDatabaseSpec
@@ -255,6 +256,17 @@ type AppWorkerSpec struct {
 type AppCORSPolicy struct {
 	// The set of allowed CORS origins.
 	AllowOrigins []*AppStringMatch `json:"allow_origins,omitempty"`
+}
+
+// AppCreateRequest struct for AppCreateRequest
+type AppCreateRequest struct {
+	Spec           *AppSpec           `json:"spec"`
+	DeployTemplate *AppDeployTemplate `json:"deploy_template,omitempty"`
+}
+
+// AppDeployTemplate struct for AppDeployTemplate
+type AppDeployTemplate struct {
+	Spec *AppSpec `json:"spec,omitempty"`
 }
 
 // Deployment struct for Deployment
